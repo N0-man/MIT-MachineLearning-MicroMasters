@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>04 Points and Vectors &#8212; MIT Micromasters Machine Learning From Linear Models to Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 110}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 0 Prerequisite/Homework 0/04 Points and Vectors';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="05 Planes" href="05%20Planes.html" />
+    <link rel="prev" title="03 Function properties" href="03%20Function%20Properties.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="MIT Micromasters Machine Learning From Linear Models to Deep Learning - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="MIT Micromasters Machine Learning From Linear Models to Deep Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Students Notes from MITx 6.86x semister
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">00 Prerequisite Mathematics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01%20Summation.html">01 Summation Notation</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02%20Product%20Notation.html">02 Product Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20Function%20Properties.html">03 Function properties</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">04 Points and Vectors</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="05%20Planes.html">05 Planes</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06%20Probability%20Density%20Functions.html">06 Probability Density Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20Univariate%20Gaussians.html">07 Univariate Gaussians</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08%20Differential%20Calculus.html">08 Differential Calculus</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="09%20Gradients.html">09 Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Matrices.html">10 Matrices and Vectors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/N0-man/MIT-MachineLearning-MicroMasters" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/N0-man/MIT-MachineLearning-MicroMasters/issues/new?title=Issue%20on%20page%20%2FUnit 0 Prerequisite/Homework 0/04 Points and Vectors.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unit 0 Prerequisite/Homework 0/04 Points and Vectors.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>04 Points and Vectors</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">04 Points and Vectors</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products-algebric">Dot Products (algebric)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">Norm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-using-norm-geometric-definition">Dot Product using Norm (geometric definition)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-and-orthogonal-or-perpendicular-vectors">Dot product and orthogonal (or perpendicular) vectors</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-vector">Unit Vector</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projection">Projection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-magnitude-of-projection">Signed magnitude of projection</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="points-and-vectors">
+<h1>04 Points and Vectors<a class="headerlink" href="#points-and-vectors" title="Link to this heading">#</a></h1>
+<p>A list of n numbers can be thought of as a point or a vector in n-dimensional space. Going forward, we will think of n-dimensional vectors <span class="math notranslate nohighlight">\(\begin{bmatrix} a_1\\ a_2\\ \vdots \\ a_ n\end{bmatrix}\)</span> flexibly as points and as vectors.</p>
+</section>
+<section id="dot-products-algebric">
+<h1>Dot Products (algebric)<a class="headerlink" href="#dot-products-algebric" title="Link to this heading">#</a></h1>
+<p>Notation: We will use regular letters as symbols for numbers, vectors, matrices, planes, hyperplanes, etc. You will need to distinguish what a letter represents from the context.</p>
+<p>Recall the dot product of a pair of vectors a and b:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\displaystyle a \cdot b = a_1b_1+a_2b_2+\cdots +a_ nb_ n\qquad \text {where }\,  a= \begin{bmatrix}  a_1\\ a_2 \\ \vdots \\ a_ n \end{bmatrix} \text { and } b= \begin{bmatrix}  b_1\\ b_2 \\ \vdots \\ b_ n \end{bmatrix}.
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x_i</span> <span class="o">*</span> <span class="n">y_i</span> <span class="k">for</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span> <span class="o">==</span> <span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="norm">
+<h1>Norm<a class="headerlink" href="#norm" title="Link to this heading">#</a></h1>
+<p>The norm (or length) of a vector <span class="math notranslate nohighlight">\(\mathbf{a} = [a_1, a_2, ..., a_n]\)</span> in n-dimensional space is given by the square root of the sum of the squares of its components. This is also known as the Euclidean norm or the 2-norm, and it’s represented as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+||\mathbf{a}|| = \sqrt{a_1^2 + a_2^2 + ... + a_n^2}
+\]</div>
+<p>This formula comes from the <strong>Pythagorean theorem</strong> and can be thought of as a generalization of the theorem to n dimensions. <strong>The norm gives the “length” of the vector from the origin to the point in n-dimensional space represented by the vector</strong>.</p>
+<p>Here’s how it works with an example:</p>
+<p>Let’s say we have a 3-dimensional vector <span class="math notranslate nohighlight">\(\mathbf{a} = [3, 4, 5]\)</span>. The norm of this vector would be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[ ||\mathbf{a}|| = \sqrt{3^2 + 4^2 + 5^2} = \sqrt{9 + 16 + 25} = \sqrt{50} \approx 7.071 \]</div>
+<p>So, the length of the vector <span class="math notranslate nohighlight">\(\mathbf{a} = [3, 4, 5]\)</span> is approximately 7.071.</p>
+<p>This formula is a generalization of the Pythagorean theorem to n dimensions. In 2 dimensions, it gives the length of the hypotenuse of a right triangle. In 3 dimensions, it gives the length of the line segment from the origin to a point in space. In n dimensions, it gives the “distance” from the origin to a point in n-dimensional space.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+
+<span class="k">def</span> <span class="nf">norm</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">norm</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">norm</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">norm</span><span class="p">([</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.7416573867739413
+0.5
+0.25
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dot-product-using-norm-geometric-definition">
+<h1>Dot Product using Norm (geometric definition)<a class="headerlink" href="#dot-product-using-norm-geometric-definition" title="Link to this heading">#</a></h1>
+<p>The dot product of two vectors a and b in n-dimensional space can also be represented using the norm (or length) of the vectors and the angle between them.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are vectors, and <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between them, then the dot product of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a} \cdot \mathbf{b} = ||\mathbf{a}|| \, ||\mathbf{b}|| \, \cos(\theta)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(||\mathbf{a}||\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{b}||\)</span> are the norms (or lengths) of the vectors <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>, respectively, and <span class="math notranslate nohighlight">\(\cos(\theta)\)</span> is the cosine of the angle between the vectors.</p>
+<p>This formula is known as the geometric definition of the dot product. It shows that the dot product of two vectors is equal to the product of their lengths and the cosine of the angle between them.</p>
+<p>The angle in radians between two vectors can be calculated using the dot product and the norms (magnitudes) of the vectors. The formula is:</p>
+<div class="math notranslate nohighlight">
+\[ \theta = \arccos\left(\frac{\mathbf{a} \cdot \mathbf{b}}{||\mathbf{a}|| , ||\mathbf{b}||}\right) \]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> is the angle between the vectors,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are the vectors,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b}\)</span> is the dot product of the vectors,</p></li>
+<li><p><span class="math notranslate nohighlight">\(||\mathbf{a}||\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{b}||\)</span> are the norms (magnitudes) of the vectors,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\arccos\)</span> is the inverse cosine function.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">acos</span><span class="p">,</span> <span class="n">pi</span>
+
+<span class="k">def</span> <span class="nf">angle</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">acos</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">norm</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">angle</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">angle</span><span class="p">([</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2257261285527342
+1.5707963267948966
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dot-product-and-orthogonal-or-perpendicular-vectors">
+<h1>Dot product and orthogonal (or perpendicular) vectors<a class="headerlink" href="#dot-product-and-orthogonal-or-perpendicular-vectors" title="Link to this heading">#</a></h1>
+<p>Two vectors are orthogonal (or perpendicular or <span class="math notranslate nohighlight">\(\pi /2\)</span>) to each other if their dot product is zero.</p>
+<p>In the case of 3-dimensional vectors <span class="math notranslate nohighlight">\(\mathbf{x} = [x_1, x_2, x_3]\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y} = [y_1, y_2, y_3]\)</span>, they are orthogonal if:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x} \cdot \mathbf{y} = x_1y_1 + x_2y_2 + x_3y_3 = 0
+\]</div>
+<p>This is because the dot product of two vectors is equal to the product of their magnitudes and the cosine of the angle between them. If the vectors are orthogonal, the angle between them is 90 degrees, and the cosine of 90 degrees is zero, making the entire dot product zero.</p>
+<p>e.g. Two vectors are orthogonal (or perpendicular) to each other if their dot product is zero.</p>
+<p>In the case of 3-dimensional vectors <span class="math notranslate nohighlight">\(\mathbf{x} = [a_1, a_2, a_3]\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y} = [a_1, -a_2, a_3]\)</span>, they are orthogonal if:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x} \cdot \mathbf{y} = a_1*a_1 + a_2*(-a_2) + a_3*a_3 = 0
+\]</div>
+<p>Simplifying, we get:</p>
+<div class="math notranslate nohighlight">
+\[
+a_1^2 - a_2^2 + a_3^2 = 0
+\]</div>
+<p>So, the vectors <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{y}\)</span> are orthogonal when <span class="math notranslate nohighlight">\(a_1^2 - a_2^2 + a_3^2 = 0\)</span>.</p>
+</section>
+<section id="unit-vector">
+<h1>Unit Vector<a class="headerlink" href="#unit-vector" title="Link to this heading">#</a></h1>
+<p>A unit vector is a vector of length 1.</p>
+<p>If you have a vector <span class="math notranslate nohighlight">\(\mathbf{x} = [x_1, x_2, ..., x_n]\)</span>, you can calculate its unit vector <span class="math notranslate nohighlight">\(\hat{\mathbf{x}}\)</span> by dividing each component of the vector by its norm (or length).</p>
+<p>The formula to calculate the unit vector is:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{\mathbf{x}} = \frac{\mathbf{x}}{||\mathbf{x}||}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(||\mathbf{x}||\)</span> is the norm of the vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, calculated as <span class="math notranslate nohighlight">\(||\mathbf{x}|| = \sqrt{x_1^2 + x_2^2 + ... + x_n^2}\)</span>.</p>
+<p>So, if you have a vector <span class="math notranslate nohighlight">\(\mathbf{x} = [3, 4]\)</span>, its norm is <span class="math notranslate nohighlight">\(||\mathbf{x}|| = \sqrt{3^2 + 4^2} = 5\)</span>. The unit vector would then be <span class="math notranslate nohighlight">\(\hat{\mathbf{x}} = [3/5, 4/5] = [0.6, 0.8]\)</span>.</p>
+<p><strong>The unit vector has the same direction as the original vector, but its length is 1.</strong></p>
+</section>
+<section id="projection">
+<h1>Projection<a class="headerlink" href="#projection" title="Link to this heading">#</a></h1>
+<p>In linear algebra, the projection of one vector onto another is a vector that is the “shadow” of one vector (the vector being projected) along another vector (the vector onto which the first vector is being projected).</p>
+<p>Let’s say we have two vectors, <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The projection of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> onto <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is a vector that lies on the line defined by <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> and is closest to <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p>
+<p>The formula to calculate the projection of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> onto <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{proj}_{\mathbf{b}}\mathbf{a} = \frac{\mathbf{a} \cdot \mathbf{b}}{||\mathbf{b}||^2} \mathbf{b}
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b}\)</span> is the dot product of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(||\mathbf{b}||\)</span> is the norm (or length) of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is the vector onto which <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is being projected.</p></li>
+</ul>
+<p>This formula gives us a vector that is in the direction of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> and has length equal to the component of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> in the direction of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>.</p>
+</section>
+<section id="signed-magnitude-of-projection">
+<h1>Signed magnitude of projection<a class="headerlink" href="#signed-magnitude-of-projection" title="Link to this heading">#</a></h1>
+<p>The signed magnitude of the projection of one vector onto another, often referred to as the scalar projection, is a scalar value that represents how much of one vector goes in the direction of another vector.</p>
+<p>Let’s say we have two vectors, <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>. The signed magnitude <span class="math notranslate nohighlight">\(c\)</span> of the projection of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> onto <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+c = \frac{\mathbf{a} \cdot \mathbf{b}}{||\mathbf{b}||}
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a} \cdot \mathbf{b}\)</span> is the dot product of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(||\mathbf{b}||\)</span> is the norm (or length) of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>.</p></li>
+</ul>
+<p>This formula gives us a scalar value that is positive if the angle between <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> is less than 90 degrees (i.e., <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is in the same general direction as <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>), negative if the angle is greater than 90 degrees (i.e., <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is in the opposite general direction), and zero if the vectors are orthogonal (i.e., at right angles to each other).</p>
+<p>In the case of 3-dimensional vectors <span class="math notranslate nohighlight">\(\mathbf{a} = [a_1, a_2, a_3]\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b} = [a_1, -a_2, a_3]\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+(a_1^2 - a_2^2 + a_3^2)/\sqrt{a_1^2 + a_2^2 + a_3^2}
+\]</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 0 Prerequisite/Homework 0"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03%20Function%20Properties.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">03 Function properties</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05%20Planes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">05 Planes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">04 Points and Vectors</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-products-algebric">Dot Products (algebric)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">Norm</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-using-norm-geometric-definition">Dot Product using Norm (geometric definition)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-and-orthogonal-or-perpendicular-vectors">Dot product and orthogonal (or perpendicular) vectors</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-vector">Unit Vector</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#projection">Projection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-magnitude-of-projection">Signed magnitude of projection</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By n03an
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

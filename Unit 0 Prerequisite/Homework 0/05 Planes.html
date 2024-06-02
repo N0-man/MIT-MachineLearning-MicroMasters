@@ -1,0 +1,761 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>05 Planes &#8212; MIT Micromasters Machine Learning From Linear Models to Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 110}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 0 Prerequisite/Homework 0/05 Planes';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="06 Probability Density Functions" href="06%20Probability%20Density%20Functions.html" />
+    <link rel="prev" title="04 Points and Vectors" href="04%20Points%20and%20Vectors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="MIT Micromasters Machine Learning From Linear Models to Deep Learning - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="MIT Micromasters Machine Learning From Linear Models to Deep Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Students Notes from MITx 6.86x semister
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">00 Prerequisite Mathematics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01%20Summation.html">01 Summation Notation</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02%20Product%20Notation.html">02 Product Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20Function%20Properties.html">03 Function properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20Points%20and%20Vectors.html">04 Points and Vectors</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">05 Planes</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06%20Probability%20Density%20Functions.html">06 Probability Density Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20Univariate%20Gaussians.html">07 Univariate Gaussians</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08%20Differential%20Calculus.html">08 Differential Calculus</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="09%20Gradients.html">09 Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Matrices.html">10 Matrices and Vectors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/N0-man/MIT-MachineLearning-MicroMasters" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/N0-man/MIT-MachineLearning-MicroMasters/issues/new?title=Issue%20on%20page%20%2FUnit 0 Prerequisite/Homework 0/05 Planes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unit 0 Prerequisite/Homework 0/05 Planes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>05 Planes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">05 Planes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representations">Representations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonality-check">Orthogonality Check</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-perpendicular-distance-to-plane">Signed Perpendicular Distance to Plane</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-projection-onto-plane">Orthogonal projection onto plane</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-signed-perpendicular-distance">Question (signed perpendicular distance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-distance-from-origin">Question (Distance from Origin)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-orthogonal-projection">Question (Orthogonal Projection)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question">Question</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="planes">
+<h1>05 Planes<a class="headerlink" href="#planes" title="Link to this heading">#</a></h1>
+<p>A hyperplane in n-dimensional space is a subspace that is one dimension less than the space itself. It’s an “n-1” dimensional subspace of an “n” dimensional space.</p>
+<p>Here are some examples to illustrate this concept:</p>
+<ol class="arabic simple">
+<li><p><strong>In 2-dimensional space (a plane)</strong>: A hyperplane is a 1-dimensional line. For example, in a 2D Cartesian coordinate system, the line defined by the equation <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">2x</span> <span class="pre">+</span> <span class="pre">1</span></code> is a hyperplane.</p></li>
+<li><p><strong>In 3-dimensional space</strong>: A hyperplane is a 2-dimensional plane. For example, in a 3D Cartesian coordinate system, the plane defined by the equation <code class="docutils literal notranslate"><span class="pre">2x</span> <span class="pre">+</span> <span class="pre">3y</span> <span class="pre">-</span> <span class="pre">z</span> <span class="pre">=</span> <span class="pre">5</span></code> is a hyperplane.</p></li>
+<li><p><strong>In 4-dimensional space</strong>: A hyperplane is a 3-dimensional space. It’s harder to visualize, but it’s defined by an equation like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">2y</span> <span class="pre">+</span> <span class="pre">3z</span> <span class="pre">-</span> <span class="pre">4w</span> <span class="pre">=</span> <span class="pre">7</span></code>.</p></li>
+</ol>
+<p>In general, a hyperplane can be defined by a linear equation of the form:</p>
+<div class="math notranslate nohighlight">
+\[
+a_1x_1 + a_2x_2 + ... + a_nx_n = b
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(a_1, a_2, ..., a_n\)</span> are the coefficients of the hyperplane, <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_n\)</span> are the variables (or coordinates in the space), and <span class="math notranslate nohighlight">\(b\)</span> is a constant. The coefficients <span class="math notranslate nohighlight">\(a_1, a_2, ..., a_n\)</span> determine the orientation of the hyperplane in the space, and the constant <span class="math notranslate nohighlight">\(b\)</span> determines its offset from the origin.</p>
+</section>
+<section id="representations">
+<h1>Representations<a class="headerlink" href="#representations" title="Link to this heading">#</a></h1>
+<p>There are infinitely many alternative descriptions for the hyperplane P.</p>
+<p>The equation of a hyperplane is not unique. Any scalar multiple of the normal vector and the offset will describe the same hyperplane.</p>
+<p>If <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is the normal vector to the hyperplane and <span class="math notranslate nohighlight">\(A_0\)</span> is the offset, then for any non-zero scalar <span class="math notranslate nohighlight">\(k\)</span>, the vector <span class="math notranslate nohighlight">\(k\mathbf{A}\)</span> and the offset <span class="math notranslate nohighlight">\(kA_0\)</span> will describe the same hyperplane.</p>
+<p>So, for example, if <span class="math notranslate nohighlight">\(\mathbf{A} = [1, 2, 3]\)</span> and <span class="math notranslate nohighlight">\(A_0 = 4\)</span> describe a hyperplane, then <span class="math notranslate nohighlight">\(2\mathbf{A} = [2, 4, 6]\)</span> and <span class="math notranslate nohighlight">\(2A_0 = 8\)</span> will describe the same hyperplane. Similarly, <span class="math notranslate nohighlight">\(0.5\mathbf{A} = [0.5, 1, 1.5]\)</span> and <span class="math notranslate nohighlight">\(0.5A_0 = 2\)</span> will also describe the same hyperplane.</p>
+<p>This is because scaling the normal vector and the offset by the same factor does not change the set of points <span class="math notranslate nohighlight">\((x_1, x_2, ..., x_d)\)</span> that satisfy the equation <span class="math notranslate nohighlight">\(\mathbf{A} \cdot \mathbf{x} + A_0 = 0\)</span>.</p>
+</section>
+<section id="orthogonality-check">
+<h1>Orthogonality Check<a class="headerlink" href="#orthogonality-check" title="Link to this heading">#</a></h1>
+<p>To check if a vector <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is orthogonal to a hyperplane P characterized by a normal vector <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and an offset <span class="math notranslate nohighlight">\(A_0\)</span>, you need to check the dot product between <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>.</p>
+<p>The dot product of two vectors <span class="math notranslate nohighlight">\(\mathbf{a} = [a_1, a_2, ..., a_n]\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b} = [b_1, b_2, ..., b_n]\)</span> is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a} \cdot \mathbf{b} = a_1b_1 + a_2b_2 + ... + a_nb_n
+\]</div>
+<p>If the dot product is zero, then <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is orthogonal to the hyperplane. This is because the dot product of two vectors is zero if and only if the vectors are orthogonal.</p>
+<p>So, to check if <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is orthogonal to the hyperplane P, you would calculate:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{A} \cdot \mathbf{x} = 0
+\]</div>
+<p>If this equation holds, then <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is orthogonal to the hyperplane P.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">dot_product</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is orthogonal to the hyperplane P&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is not orthogonal to the hyperplane P&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="k">if</span> <span class="n">dot_product</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x is orthogonal to the hyperplane P&quot;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;np&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="signed-perpendicular-distance-to-plane">
+<h1>Signed Perpendicular Distance to Plane<a class="headerlink" href="#signed-perpendicular-distance-to-plane" title="Link to this heading">#</a></h1>
+<p>The signed distance <span class="math notranslate nohighlight">\(d\)</span> between a point or vector <span class="math notranslate nohighlight">\(\mathbf{x} = [x_1, x_2, ..., x_n]\)</span> and a hyperplane P characterized by a normal vector <span class="math notranslate nohighlight">\(\mathbf{A} = [A_1, A_2, ..., A_n]\)</span> and an offset <span class="math notranslate nohighlight">\(A_0\)</span> can be calculated using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+d = \frac{\mathbf{A} \cdot \mathbf{x} + A_0}{\|\mathbf{A}\|}
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\mathbf{A} \cdot \mathbf{x}\)</span> is the dot product of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, and <span class="math notranslate nohighlight">\(\|\mathbf{A}\|\)</span> is the Euclidean norm (or length) of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, calculated as <span class="math notranslate nohighlight">\(\sqrt{A_1^2 + A_2^2 + ... + A_n^2}\)</span>.</p>
+<p>The sign of the distance indicates which side of the hyperplane the point <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is on. If the distance is positive, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is on the side of the hyperplane in the direction of the normal vector <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. If the distance is negative, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is on the opposite side. If the distance is zero, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is on the hyperplane.</p>
+</section>
+<section id="orthogonal-projection-onto-plane">
+<h1>Orthogonal projection onto plane<a class="headerlink" href="#orthogonal-projection-onto-plane" title="Link to this heading">#</a></h1>
+<p>The orthogonal projection of a point <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> onto a hyperplane P characterized by a normal vector <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and an offset <span class="math notranslate nohighlight">\(A_0\)</span> is given by the following formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{p} = \mathbf{v} - \frac{\mathbf{A} \cdot \mathbf{v} + A_0}{\|\mathbf{A}\|^2}\mathbf{A}
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\mathbf{A} \cdot \mathbf{v}\)</span> is the dot product of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, and <span class="math notranslate nohighlight">\(\|\mathbf{A}\|^2\)</span> is the square of the Euclidean norm (or length) of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>, calculated as <span class="math notranslate nohighlight">\(A_1^2 + A_2^2 + ... + A_n^2\)</span>.</p>
+<p>The vector <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> is the orthogonal projection of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> onto the hyperplane P. It is the point on the hyperplane that is closest to <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
+<section id="question-signed-perpendicular-distance">
+<h2>Question (signed perpendicular distance)<a class="headerlink" href="#question-signed-perpendicular-distance" title="Link to this heading">#</a></h2>
+<p>Let P be the hyperplane consisting of the set of points x = [x1, x2] for which 3x1 + x2 -1 = 0. What is the signed perpendicular distance of point a = [-1, -1] from P?</p>
+<p><strong>Explanation</strong></p>
+<p>The signed perpendicular distance <code class="docutils literal notranslate"><span class="pre">d</span></code> from a point <code class="docutils literal notranslate"><span class="pre">a</span></code> to a hyperplane <code class="docutils literal notranslate"><span class="pre">P</span></code> characterized by a normal vector <code class="docutils literal notranslate"><span class="pre">A</span></code> and an offset <code class="docutils literal notranslate"><span class="pre">A0</span></code> is given by the formula:</p>
+<div class="math notranslate nohighlight">
+\[ d = \frac{(A.a + A_0)}{ ||A||}\]</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">A.a</span></code> is the dot product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>, and <code class="docutils literal notranslate"><span class="pre">||A||</span></code> is the Euclidean norm (or length) of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p>In this case, the hyperplane <code class="docutils literal notranslate"><span class="pre">P</span></code> is defined by the equation <code class="docutils literal notranslate"><span class="pre">3x1</span> <span class="pre">+</span> <span class="pre">x2</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">0</span></code>, so the normal vector <code class="docutils literal notranslate"><span class="pre">A</span></code> is <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">1]</span></code> and the offset <code class="docutils literal notranslate"><span class="pre">A0</span></code> is <code class="docutils literal notranslate"><span class="pre">-1</span></code>. The point <code class="docutils literal notranslate"><span class="pre">a</span></code> is <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">-2]</span></code>.</p>
+<p>The dot product <code class="docutils literal notranslate"><span class="pre">A.a</span></code> is <span class="math notranslate nohighlight">\(3*(-1) + 1*(-1) = -4\)</span>.</p>
+<p>The Euclidean norm <code class="docutils literal notranslate"><span class="pre">||A||</span></code> is <span class="math notranslate nohighlight">\(\sqrt{(3^2 + 1^2)} = \sqrt{(10)}\)</span>.</p>
+<p>So, the signed perpendicular distance <code class="docutils literal notranslate"><span class="pre">d</span></code> from <code class="docutils literal notranslate"><span class="pre">a</span></code> to <code class="docutils literal notranslate"><span class="pre">P</span></code> is <span class="math notranslate nohighlight">\((-4 + (-1)) / \sqrt{10} = -5 / \sqrt{10}\)</span>.</p>
+<p>This means that the point <code class="docutils literal notranslate"><span class="pre">a</span></code> is approximately 1.26491 units away from the hyperplane <code class="docutils literal notranslate"><span class="pre">P</span></code>, and it’s on the side of the hyperplane opposite to the direction of the normal vector <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p>Here is the Python code to calculate this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Plane P is 3x1 + x2 -1 = 0</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c1"># Point a = (-1, -1)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">A0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A.a + A0 :  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;||A|| : </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A.a + A0 :  -5
+||A|| : 3.1622776601683795
+-1.5811388300841895
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-distance-from-origin">
+<h2>Question (Distance from Origin)<a class="headerlink" href="#question-distance-from-origin" title="Link to this heading">#</a></h2>
+<p>For the above question, what is the signed perpendicular distance of the <code class="docutils literal notranslate"><span class="pre">origin</span></code> from <code class="docutils literal notranslate"><span class="pre">P</span></code>?</p>
+<p>Hint: The point <code class="docutils literal notranslate"><span class="pre">a</span></code> is the origin <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0]</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Plane P is 3x1 + x2 -1 = 0</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c1"># Origin point a = [0, 0]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">A0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A.a + A0 :  </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A0</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;||A|| : </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A.a + A0 :  -1
+||A|| : 3.1622776601683795
+-0.31622776601683794
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-orthogonal-projection">
+<h2>Question (Orthogonal Projection)<a class="headerlink" href="#question-orthogonal-projection" title="Link to this heading">#</a></h2>
+<p>The orthogonal projection <code class="docutils literal notranslate"><span class="pre">p</span></code> of a point <code class="docutils literal notranslate"><span class="pre">a</span></code> onto a hyperplane <code class="docutils literal notranslate"><span class="pre">P</span></code> characterized by a normal vector <code class="docutils literal notranslate"><span class="pre">A</span></code> and an offset <code class="docutils literal notranslate"><span class="pre">A0</span></code> is given by the formula:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{p} = \mathbf{a} - \frac{\mathbf{A} \cdot \mathbf{a} + A_0}{\|\mathbf{A}\|^2}\mathbf{A}
+\]</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">A.a</span></code> is the dot product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code>, and <code class="docutils literal notranslate"><span class="pre">||A||^2</span></code> is the square of the Euclidean norm (or length) of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p>In this case, the hyperplane <code class="docutils literal notranslate"><span class="pre">P</span></code> is defined by the equation <code class="docutils literal notranslate"><span class="pre">3x1</span> <span class="pre">+</span> <span class="pre">x2</span> <span class="pre">-</span> <span class="pre">1</span> <span class="pre">=</span> <span class="pre">0</span></code>, so the normal vector <code class="docutils literal notranslate"><span class="pre">A</span></code> is <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">1]</span></code> and the offset <code class="docutils literal notranslate"><span class="pre">A0</span></code> is <code class="docutils literal notranslate"><span class="pre">-1</span></code>. The point <code class="docutils literal notranslate"><span class="pre">a</span></code> is <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">-2]</span></code>.</p>
+<p>The dot product <code class="docutils literal notranslate"><span class="pre">A.a</span></code> is <span class="math notranslate nohighlight">\(3*(-1) + 1*(-1) = -4\)</span>.</p>
+<p>The Euclidean norm <code class="docutils literal notranslate"><span class="pre">||A||</span></code> is <span class="math notranslate nohighlight">\((\sqrt{(3^2 + 1^2)})^2 = (\sqrt{(10)})^2 = 10\)</span>.</p>
+<p>So, the orthogonal projection <code class="docutils literal notranslate"><span class="pre">p</span></code> of <code class="docutils literal notranslate"><span class="pre">a</span></code> onto <code class="docutils literal notranslate"><span class="pre">P</span></code> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align} 
+= \mathbf{a} - \frac{\mathbf{A} \cdot \mathbf{a} + A_0}{\|\mathbf{A}\|^2}\mathbf{A} \\
+= [-1, -1] - ((-4 + (-1)) / 10) * [3, 1] \\
+= [-1, -1] - (-5/10) * [3, 1] \\
+= [0.5, -0.5] \\
+\end{align}
+\end{split}\]</div>
+<p>This means that the orthogonal projection of <code class="docutils literal notranslate"><span class="pre">a</span></code> onto <code class="docutils literal notranslate"><span class="pre">P</span></code> is the point <code class="docutils literal notranslate"><span class="pre">[0.5,</span> <span class="pre">-0.5]</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="n">A0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">A</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 0.5 -0.5]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question">
+<h2>Question<a class="headerlink" href="#question" title="Link to this heading">#</a></h2>
+<p><strong>Consider a hyperplane in a d-dimensional space. If we project a point onto the plane, can we recover the original point from this projection?</strong></p>
+<p>No, we cannot recover the original point from its projection onto a hyperplane in a d-dimensional space.</p>
+<p>The reason is that the projection operation is a lossy operation. When you project a point onto a hyperplane, you are essentially collapsing the point’s position along the direction perpendicular to the hyperplane down to the closest point on the hyperplane. This means that the information about how far the point was from the hyperplane along that direction is lost in the projection.</p>
+<p>Therefore, given only the projected point, there is no way to determine exactly where the original point was. It could have been anywhere along the line perpendicular to the hyperplane that passes through the projected point.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 0 Prerequisite/Homework 0"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04%20Points%20and%20Vectors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">04 Points and Vectors</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06%20Probability%20Density%20Functions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">06 Probability Density Functions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">05 Planes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#representations">Representations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonality-check">Orthogonality Check</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#signed-perpendicular-distance-to-plane">Signed Perpendicular Distance to Plane</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-projection-onto-plane">Orthogonal projection onto plane</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-signed-perpendicular-distance">Question (signed perpendicular distance)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-distance-from-origin">Question (Distance from Origin)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-orthogonal-projection">Question (Orthogonal Projection)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question">Question</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By n03an
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

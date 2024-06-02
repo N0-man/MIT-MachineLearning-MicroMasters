@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>08 Differential Calculus &#8212; MIT Micromasters Machine Learning From Linear Models to Deep Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 110}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3.2/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 0 Prerequisite/Homework 0/08 Differential Calculus';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="09 Gradients" href="09%20Gradients.html" />
+    <link rel="prev" title="07 Univariate Gaussians" href="07%20Univariate%20Gaussians.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="MIT Micromasters Machine Learning From Linear Models to Deep Learning - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="MIT Micromasters Machine Learning From Linear Models to Deep Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../README.html">
+                    Students Notes from MITx 6.86x semister
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">00 Prerequisite Mathematics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01%20Summation.html">01 Summation Notation</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02%20Product%20Notation.html">02 Product Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20Function%20Properties.html">03 Function properties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20Points%20and%20Vectors.html">04 Points and Vectors</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="05%20Planes.html">05 Planes</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06%20Probability%20Density%20Functions.html">06 Probability Density Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20Univariate%20Gaussians.html">07 Univariate Gaussians</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">08 Differential Calculus</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="09%20Gradients.html">09 Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10%20Matrices.html">10 Matrices and Vectors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/N0-man/MIT-MachineLearning-MicroMasters" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/N0-man/MIT-MachineLearning-MicroMasters/issues/new?title=Issue%20on%20page%20%2FUnit 0 Prerequisite/Homework 0/08 Differential Calculus.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Unit 0 Prerequisite/Homework 0/08 Differential Calculus.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>08 Differential Calculus</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">08 Differential Calculus</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-of-function-f-x">Derivative of Function f(x)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-and-second-derivatives-primes">First and Second Derivatives (Primes)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-via-calculus">Optimization via Calculus</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-maxima-or-minima">Local maxima or minima</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-maxima-and-minima">Global maxima and minima</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="differential-calculus">
+<h1>08 Differential Calculus<a class="headerlink" href="#differential-calculus" title="Link to this heading">#</a></h1>
+<p>This branch focuses on the concept of a derivative, which can be loosely thought of as how much one quantity is changing in response to changes in some other quantity. Differential calculus is used to solve problems of finding maximum and minimum values of functions, rates of change, and slope of curves.</p>
+<section id="derivative-of-function-f-x">
+<h2>Derivative of Function f(x)<a class="headerlink" href="#derivative-of-function-f-x" title="Link to this heading">#</a></h2>
+<p>For a general function <span class="math notranslate nohighlight">\(f(x)\)</span>, the derivative <span class="math notranslate nohighlight">\(f'(x)\)</span> can be found by applying the rules of differentiation. Here are some basic rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Constant Rule</strong>: The derivative of a constant is 0.</p></li>
+<li><p><strong>Power Rule</strong>: The derivative of <span class="math notranslate nohighlight">\(x^n\)</span> is <span class="math notranslate nohighlight">\(n*x^{n-1}\)</span>.</p></li>
+<li><p><strong>Product Rule</strong>: The derivative of <span class="math notranslate nohighlight">\(u*v\)</span> is <span class="math notranslate nohighlight">\(u'*v + u*v'\)</span>.</p></li>
+<li><p><strong>Quotient Rule</strong>: The derivative of <span class="math notranslate nohighlight">\(u/v` is `(u'*v - u*v') / v^2\)</span>.</p></li>
+<li><p><strong>Chain Rule</strong>: The derivative of <span class="math notranslate nohighlight">\(f(g(x)) ` is ` f'(g(x)) * g'(x)\)</span>.</p></li>
+</ol>
+<p>Where <code class="docutils literal notranslate"><span class="pre">u</span></code> and <code class="docutils literal notranslate"><span class="pre">v</span></code> are functions of <code class="docutils literal notranslate"><span class="pre">x</span></code>, and <code class="docutils literal notranslate"><span class="pre">u'</span></code> and <code class="docutils literal notranslate"><span class="pre">v'</span></code> are their respective derivatives.</p>
+<p>For example, if <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>, then using the power rule, <span class="math notranslate nohighlight">\(f'(x) = 2*x^{2-1} = 2*x\)</span>.</p>
+</section>
+<section id="first-and-second-derivatives-primes">
+<h2>First and Second Derivatives (Primes)<a class="headerlink" href="#first-and-second-derivatives-primes" title="Link to this heading">#</a></h2>
+<p>Find the derivatives for function
+$<span class="math notranslate nohighlight">\(
+f(x) = (1/3)x^3 - x^2 - 3x + 10
+\)</span>$.</p>
+<p>To find the first derivative, we apply the power rule for each term:</p>
+<ol class="arabic simple">
+<li><p>The derivative of <span class="math notranslate nohighlight">\((1/3)x^3\)</span> is <span class="math notranslate nohighlight">\(x^2\)</span>.</p></li>
+<li><p>The derivative of <span class="math notranslate nohighlight">\(-x^2\)</span> is <span class="math notranslate nohighlight">\(-2x\)</span>.</p></li>
+<li><p>The derivative of <span class="math notranslate nohighlight">\(-3x\)</span> is <span class="math notranslate nohighlight">\(-3\)</span>.</p></li>
+<li><p>The derivative of a constant (like <span class="math notranslate nohighlight">\(10\)</span>) is <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+</ol>
+<p>So, the first derivative of <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> is <code class="docutils literal notranslate"><span class="pre">f'(x)</span> <span class="pre">=</span> <span class="pre">x^2</span> <span class="pre">-</span> <span class="pre">2x</span> <span class="pre">-</span> <span class="pre">3</span></code>.</p>
+<p>To find the second derivative, we again apply the power rule to each term of the first derivative:</p>
+<ol class="arabic simple">
+<li><p>The derivative of <span class="math notranslate nohighlight">\(x^2\)</span> is <span class="math notranslate nohighlight">\(2x\)</span>.</p></li>
+<li><p>The derivative of <span class="math notranslate nohighlight">\(-2x\)</span> is <span class="math notranslate nohighlight">\(-2\)</span>.</p></li>
+<li><p>The derivative of <span class="math notranslate nohighlight">\(-3\)</span> is <span class="math notranslate nohighlight">\(0\)</span>.</p></li>
+</ol>
+<p>So, the second derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> is <span class="math notranslate nohighlight">\(f''(x) = 2x - 2\)</span>.</p>
+<p>In Python, you can use the <code class="docutils literal notranslate"><span class="pre">sympy.diff</span></code> function to compute derivatives. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span>
+
+<span class="c1"># First derivative</span>
+<span class="n">f_prime</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First derivative: </span><span class="si">{</span><span class="n">f_prime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Second derivative</span>
+<span class="n">f_double_prime</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f_prime</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Second derivative: </span><span class="si">{</span><span class="n">f_double_prime</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First derivative: 1.0*x**2 - 2*x - 3
+Second derivative: 2.0*x - 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="optimization-via-calculus">
+<h1>Optimization via Calculus<a class="headerlink" href="#optimization-via-calculus" title="Link to this heading">#</a></h1>
+<p>Optimization using calculus involves finding the maximum or minimum values of a function. This is often done by finding the derivative of the function and setting it equal to zero, which gives the critical points. The second derivative can then be used to determine whether these points are maxima, minima, or neither.</p>
+<p>Let’s optimize the function <span class="math notranslate nohighlight">\(f(x) = 1/3x^3 - x^2 - 3x + 10\)</span> on the interval <span class="math notranslate nohighlight">\([-4, 4]\)</span>.</p>
+<ol class="arabic simple">
+<li><p>First, find the derivative of <code class="docutils literal notranslate"><span class="pre">f(x)</span></code>. The derivative of <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> is <code class="docutils literal notranslate"><span class="pre">f'(x)</span> <span class="pre">=</span> <span class="pre">x^2</span> <span class="pre">-</span> <span class="pre">2x</span> <span class="pre">-</span> <span class="pre">3</span></code>.</p></li>
+<li><p>Set the derivative equal to zero and solve for <code class="docutils literal notranslate"><span class="pre">x</span></code> to find the critical points. This is a quadratic equation i.e. <span class="math notranslate nohighlight">\(f'(x) = 0\)</span> or <span class="math notranslate nohighlight">\(x^2 - 2x - 3 = 0\)</span>. You can represent the equation in the form of</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[y = ax^{2} + bx + c\]</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">-2</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">=</span> <span class="pre">-3</span></code>. You can now use the quadratic formulae</p>
+<div class="math notranslate nohighlight">
+\[
+x = \frac{[-b ± \sqrt{b^2 - 4ac}]} {2a}
+\]</div>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">b^2</span> <span class="pre">-</span> <span class="pre">4ac</span></code>. it would be, <code class="docutils literal notranslate"><span class="pre">(-2)^2</span> <span class="pre">-</span> <span class="pre">4*1*(-3)</span> <span class="pre">=</span> <span class="pre">4</span> <span class="pre">+</span> <span class="pre">12</span> <span class="pre">=</span> <span class="pre">16</span></code>. The square root of <code class="docutils literal notranslate"><span class="pre">16</span></code> is <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p>Substitute <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>, and the square root of the discriminant into the quadratic formula to find the solutions. This gives <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">[2</span> <span class="pre">±</span> <span class="pre">4]</span> <span class="pre">/</span> <span class="pre">(2*1)</span></code>, which simplifies to <span class="math notranslate nohighlight">\([-1, 3]\)</span> or <code class="docutils literal notranslate"><span class="pre">x1</span> <span class="pre">=</span> <span class="pre">-1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span> <span class="pre">=</span> <span class="pre">3</span></code>.</p></li>
+</ul>
+<p>Here is Python example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">equation</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">3</span>
+
+<span class="c1"># Solve the equation</span>
+<span class="n">solutions</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">equation</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Solutions: </span><span class="si">{</span><span class="n">solutions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solutions: [-1, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="local-maxima-or-minima">
+<h2>Local maxima or minima<a class="headerlink" href="#local-maxima-or-minima" title="Link to this heading">#</a></h2>
+<p>In calculus, the second derivative test is a method to classify the local maximum and local minimum of a function. Here’s how it works:</p>
+<p>Compute the second derivative of the function and substitute each critical point into the second derivative:</p>
+<ul class="simple">
+<li><p>If the second derivative at that point is positive <span class="math notranslate nohighlight">\((f''(c) &gt; 0)\)</span>, then the function has a local minimum at that point.</p></li>
+<li><p>If the second derivative at that point is negative <span class="math notranslate nohighlight">\((f''(c) &lt; 0)\)</span>, then the function has a local maximum at that point.</p></li>
+<li><p>If the second derivative at that point is zero <span class="math notranslate nohighlight">\((f''(c) = 0)\)</span>, then the test is inconclusive, and you’ll need to use another method to classify the point.</p></li>
+</ul>
+<p><strong>Continuing the above  optimization problem…</strong></p>
+<ol class="arabic simple" start="3">
+<li><p>Next will dertimine the local maxima or minima using the second derivative. The second derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> is <span class="math notranslate nohighlight">\(f''(x) = 2x - 2\)</span>.. Since <code class="docutils literal notranslate"><span class="pre">f''(-1)</span> <span class="pre">=</span> <span class="pre">-4</span></code> is negative, <code class="docutils literal notranslate"><span class="pre">x1</span> <span class="pre">=</span> <span class="pre">-1</span></code> is a local maximum. Since <code class="docutils literal notranslate"><span class="pre">f''(3)</span> <span class="pre">=</span> <span class="pre">4</span></code> is positive, <code class="docutils literal notranslate"><span class="pre">x2</span> <span class="pre">=</span> <span class="pre">3</span></code> is a local minimum.</p></li>
+</ol>
+<p>Here’s how you can do this in Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span>
+
+<span class="c1"># Find the derivative</span>
+<span class="n">f_prime</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Solve for critical points</span>
+<span class="n">critical_points</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">f_prime</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Find the second derivative</span>
+<span class="n">f_double_prime</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">f_prime</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Determine maxima, minima, or neither</span>
+<span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">critical_points</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">f_double_prime</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">point</span><span class="p">})</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Local maximum at x = </span><span class="si">{</span><span class="n">point</span><span class="si">}</span><span class="s2">, f(x) = </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">point</span><span class="p">})</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">f_double_prime</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">point</span><span class="p">})</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Local minimum at x = </span><span class="si">{</span><span class="n">point</span><span class="si">}</span><span class="s2">, f(x) = </span><span class="si">{</span><span class="n">f</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="n">point</span><span class="p">})</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x = </span><span class="si">{</span><span class="n">point</span><span class="si">}</span><span class="s2"> is neither a maximum nor a minimum.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Local maximum at x = -1.00000000000000, f(x) = 11.6666666666667
+Local minimum at x = 3.00000000000000, f(x) = 1.00000000000000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="global-maxima-and-minima">
+<h2>Global maxima and minima<a class="headerlink" href="#global-maxima-and-minima" title="Link to this heading">#</a></h2>
+<p>In calculus, global (or absolute) maxima and minima are the highest and lowest values that a function achieves on its entire domain, respectively.</p>
+<ul class="simple">
+<li><p>A global maximum is a point where the function’s value is greater than or equal to the values of all other points in the entire domain of the function. It’s the highest peak of the function.</p></li>
+<li><p>A global minimum is a point where the function’s value is less than or equal to the values of all other points in the entire domain of the function. It’s the lowest valley of the function.</p></li>
+</ul>
+<p><strong>Continuing the above optimization problem…</strong></p>
+<ol class="arabic simple" start="4">
+<li><p>Finally, evaluate the function at the critical points and the endpoints of the interval. The maximum and minimum values of the function on the interval are the highest and lowest of these values, respectively.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span>
+
+<span class="c1"># endpoints [-4, 4]</span>
+<span class="n">endpoints</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># Evaluate the function at the endpoints [-4, 4] and critical points</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">endpoints</span> <span class="o">+</span> <span class="n">critical_points</span><span class="p">:</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">point</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="n">subs</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">point</span><span class="p">})</span>
+    <span class="c1"># print(f&quot;f({point}) = {f.evalf(subs={x: point})}&quot;)</span>
+
+<span class="n">global_maximum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">global_minimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;On points &quot;</span><span class="p">,</span> <span class="n">endpoints</span> <span class="o">+</span> <span class="n">critical_points</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Global maximum is at point </span><span class="si">{</span><span class="n">global_maximum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> with value </span><span class="si">{</span><span class="n">global_maximum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Global minimum is at point </span><span class="si">{</span><span class="n">global_minimum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> with value </span><span class="si">{</span><span class="n">global_minimum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>On points  [-4, 4, -1.00000000000000, 3.00000000000000]
+Global maximum is at point -1.00000000000000 with value 11.6666666666667
+Global minimum is at point -4 with value -15.3333333333333
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 0 Prerequisite/Homework 0"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07%20Univariate%20Gaussians.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">07 Univariate Gaussians</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="09%20Gradients.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">09 Gradients</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">08 Differential Calculus</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivative-of-function-f-x">Derivative of Function f(x)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-and-second-derivatives-primes">First and Second Derivatives (Primes)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-via-calculus">Optimization via Calculus</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-maxima-or-minima">Local maxima or minima</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-maxima-and-minima">Global maxima and minima</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By n03an
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
