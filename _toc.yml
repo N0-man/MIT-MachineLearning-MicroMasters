@@ -16,6 +16,12 @@ parts:
       - file: Unit 0 Prerequisite/Homework 0/08 Differential Calculus
       - file: Unit 0 Prerequisite/Homework 0/09 Gradients
       - file: Unit 0 Prerequisite/Homework 0/10 Matrices
-  - caption: 01 Machine Learning Python Basics
+      - file: Unit 0 Prerequisite/Project 0/Part1
+      - file: Unit 0 Prerequisite/Project 0/Part2
+  - caption: 00 Self Exploration
     chapters:
-      - file: Unit 0 Prerequisite/Standard Notations
+      - file: 00 Self Exploration/Similarity
+  - caption: 01 Linear Classifiers and Generalizations
+    chapters:
+      - file: Unit 1 Linear Classifiers and Generalizations/01 Linear Classifiers
+      - file: Unit 1 Linear Classifiers and Generalizations/02 Perceptron
