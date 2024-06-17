@@ -21,7 +21,11 @@ parts:
   - caption: 00 Self Exploration
     chapters:
       - file: 00 Self Exploration/Similarity
+      - file: 00 Self Exploration/Concepts
   - caption: 01 Linear Classifiers and Generalizations
     chapters:
       - file: Unit 1 Linear Classifiers and Generalizations/01 Linear Classifiers
       - file: Unit 1 Linear Classifiers and Generalizations/02 Perceptron
+      - file: Unit 1 Linear Classifiers and Generalizations/03 Loss Function and Hinge Loss
+      - file: Unit 1 Linear Classifiers and Generalizations/04 Regularization
+      - file: Unit 1 Linear Classifiers and Generalizations/05 Gradient Descent
