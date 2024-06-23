@@ -29,3 +29,6 @@ parts:
       - file: Unit 1 Linear Classifiers and Generalizations/03 Loss Function and Hinge Loss
       - file: Unit 1 Linear Classifiers and Generalizations/04 Regularization
       - file: Unit 1 Linear Classifiers and Generalizations/05 Gradient Descent
+  - caption: 01.1 Automative review analyzer (Project)
+    chapters:
+      - file: Project 1 Automatic Review Analyzer/project
