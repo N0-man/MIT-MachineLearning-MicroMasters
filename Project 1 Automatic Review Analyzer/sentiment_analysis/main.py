@@ -2,13 +2,15 @@ import project1 as p1
 import utils
 import numpy as np
 
+from project1 import perceptron, average_perceptron, pegasos
+
 #-------------------------------------------------------------------------------
 # Data loading. There is no need to edit code in this section.
 #-------------------------------------------------------------------------------
 
-train_data = utils.load_data('reviews_train.tsv')
-val_data = utils.load_data('reviews_val.tsv')
-test_data = utils.load_data('reviews_test.tsv')
+train_data = utils.load_data('data/reviews_train.tsv')
+val_data = utils.load_data('data/reviews_val.tsv')
+test_data = utils.load_data('data/reviews_test.tsv')
 
 train_texts, train_labels = zip(*((sample['text'], sample['sentiment']) for sample in train_data))
 val_texts, val_labels = zip(*((sample['text'], sample['sentiment']) for sample in val_data))
@@ -19,6 +21,39 @@ dictionary = p1.bag_of_words(train_texts)
 train_bow_features = p1.extract_bow_feature_vectors(train_texts, dictionary)
 val_bow_features = p1.extract_bow_feature_vectors(val_texts, dictionary)
 test_bow_features = p1.extract_bow_feature_vectors(test_texts, dictionary)
+
+perceptron_accuracy = p1.classifier_accuracy(
+    classifier=perceptron, 
+    train_feature_matrix=train_bow_features, 
+    val_feature_matrix=val_bow_features, 
+    train_labels=train_labels, 
+    val_labels=val_labels, 
+    T=10
+)
+
+average_perceptron_accuracy = p1.classifier_accuracy(
+    classifier=average_perceptron, 
+    train_feature_matrix=train_bow_features, 
+    val_feature_matrix=val_bow_features, 
+    train_labels=train_labels, 
+    val_labels=val_labels, 
+    T=10
+)
+
+pegasos_accuracy = p1.classifier_accuracy(
+    classifier=pegasos, 
+    train_feature_matrix=train_bow_features, 
+    val_feature_matrix=val_bow_features, 
+    train_labels=train_labels, 
+    val_labels=val_labels, 
+    T=10, 
+    L=0.01
+)
+
+print("Perceptron: train accuracy = %.5f, validation accuracy = %.5f" % perceptron_accuracy)
+print("Average Perceptron: train accuracy = %.5f, validation accuracy = %.5f" % average_perceptron_accuracy)
+print("Pegasos: train accuracy = %.5f, validation accuracy = %.5f" % pegasos_accuracy)
+
 
 #-------------------------------------------------------------------------------
 # Problem 5
