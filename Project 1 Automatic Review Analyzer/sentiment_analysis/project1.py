@@ -382,11 +382,15 @@ def bag_of_words(texts):
         a dictionary that maps each word appearing in `texts` to a unique
         integer `index`.
     """
+
+    # stopwords = np.loadtxt("stopwords.txt", dtype="str")
     
     dictionary = {}  # maps word to unique index
     for text in texts:
         word_list = extract_words(text)
         for word in word_list:
+            # if word in stopwords:
+            #     continue
             if word not in dictionary:
                 dictionary[word] = len(dictionary)
 
