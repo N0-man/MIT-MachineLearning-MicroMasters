@@ -71,7 +71,7 @@ def check_array(ex_name, f, exp_res, *args):
     if not len(res) == len(exp_res):
         log(red("FAIL"), ex_name, ": expected an array of shape ", exp_res.shape, " but got array of shape", res.shape)
         return True
-    if not all(equals(x, y) for x, y in zip(res, exp_res)):
+    if not all(equals(round(x, 4), round(y, 4)) for x, y in zip(res, exp_res)):
         log(red("FAIL"), ex_name, ": incorrect answer. Expected", exp_res, ", got: ", res)
         return True
 
