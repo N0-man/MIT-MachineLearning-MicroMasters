@@ -3,7 +3,7 @@
 
 title: MIT Micromasters Machine Learning From Linear Models to Deep Learning
 author: n03an
-logo: logo.png
+logo: logo_n.png
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -24,6 +24,7 @@ parse:
     - dollarmath
     - attrs_inline
     - smartquotes
+    - html_image
 
 # Information about where the book exists on the web
 repository:
