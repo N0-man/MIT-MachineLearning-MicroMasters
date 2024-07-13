@@ -31,8 +31,20 @@ def compute_probabilities(X, theta, temp_parameter):
     Returns:
         H - (k, n) NumPy array, where each entry H[j][i] is the probability that X[i] is labeled as j
     """
-    #YOUR CODE HERE
-    raise NotImplementedError
+    # Compute the scaled dot product: (n, d) dot (k, d).T -> (n, k)
+    scaled_scores = np.dot(X, theta.T) / temp_parameter
+    
+    # Prevent numerical overflow by subtracting the max score from each score
+    scaled_scores -= np.max(scaled_scores, axis=1, keepdims=True)
+    
+    # Exponentiate the adjusted scores
+    exp_scores = np.exp(scaled_scores)
+    
+    # Normalize the scores to get probabilities: (n, k)
+    probabilities = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
+    
+    # Transpose to match the expected output shape (k, n)
+    return probabilities.T
 
 def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     """
