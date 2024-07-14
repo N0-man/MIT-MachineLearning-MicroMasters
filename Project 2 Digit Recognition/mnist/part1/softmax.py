@@ -31,20 +31,14 @@ def compute_probabilities(X, theta, temp_parameter):
     Returns:
         H - (k, n) NumPy array, where each entry H[j][i] is the probability that X[i] is labeled as j
     """
-    # Compute the scaled dot product: (n, d) dot (k, d).T -> (n, k)
-    scaled_scores = np.dot(X, theta.T) / temp_parameter
-    
-    # Prevent numerical overflow by subtracting the max score from each score
-    scaled_scores -= np.max(scaled_scores, axis=1, keepdims=True)
-    
-    # Exponentiate the adjusted scores
-    exp_scores = np.exp(scaled_scores)
-    
-    # Normalize the scores to get probabilities: (n, k)
-    probabilities = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
-    
-    # Transpose to match the expected output shape (k, n)
-    return probabilities.T
+    itemp = 1 / temp_parameter
+    dot_products = itemp * theta.dot(X.T)
+    max_of_columns = dot_products.max(axis=0)
+    shifted_dot_products = dot_products - max_of_columns
+    exponentiated = np.exp(shifted_dot_products)
+    col_sums = exponentiated.sum(axis=0)
+
+    return exponentiated / col_sums
 
 def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     """
@@ -62,8 +56,16 @@ def compute_cost_function(X, Y, theta, lambda_factor, temp_parameter):
     Returns
         c - the cost value (scalar)
     """
-    #YOUR CODE HERE
-    raise NotImplementedError
+    N = X.shape[0]
+    probabilities = compute_probabilities(X, theta, temp_parameter)
+    selected_probabilities = np.choose(Y, probabilities)
+    non_regulizing_cost = np.sum(np.log(selected_probabilities))
+    non_regulizing_cost *= -1 / N
+    regulizing_cost = np.sum(np.square(theta))
+    regulizing_cost *= lambda_factor / 2.0
+
+    return non_regulizing_cost + regulizing_cost
+
 
 def run_gradient_descent_iteration(X, Y, theta, alpha, lambda_factor, temp_parameter):
     """
