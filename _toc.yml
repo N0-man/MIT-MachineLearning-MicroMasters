@@ -30,11 +30,16 @@ parts:
       - file: Unit 1 Linear Classifiers and Generalizations/03 Loss Function and Hinge Loss
       - file: Unit 1 Linear Classifiers and Generalizations/04 Regularization
       - file: Unit 1 Linear Classifiers and Generalizations/05 Gradient Descent
+  - caption: Project 1 Automatic Review Analyzer
+    chapters:
+      - file: Project 1 Automatic Review Analyzer/project
   - caption: 02 Non-linear Classifiers, Linear regression and Collaborative filtering
     chapters:
       - file: Unit 2/06 Linear Regression
       - file: Unit 2/07 Nonlinear Classification
-  - caption: Projects
+  - caption: Project 2 Digit Recognition
     chapters:
-      - file: Project 1 Automatic Review Analyzer/project
-      - file: Project 2 Digit Recognition/mnist/mnist
+      - file: Project 2 Digit Recognition/00 Digital Recognition MNIST
+      - file: Project 2 Digit Recognition/01 Linear Regression (Closed Form Solution)
+      - file: Project 2 Digit Recognition/02 Support Vector Machine
+      - file: Project 2 Digit Recognition/03 Softmax and Cross Entrphy Loss
