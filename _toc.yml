@@ -37,6 +37,7 @@ parts:
     chapters:
       - file: Unit 2/06 Linear Regression
       - file: Unit 2/07 Nonlinear Classification
+      - file: Unit 2/08 Principal Component Analysis
   - caption: Project 2 Digit Recognition
     chapters:
       - file: Project 2 Digit Recognition/00 Digital Recognition MNIST
