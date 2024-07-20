@@ -6,3 +6,5 @@ scipy
 scikit-learn
 nbconvert
 seaborn
+matplotlib
+gensim
