@@ -44,3 +44,7 @@ parts:
       - file: Project 2 Digit Recognition/01 Linear Regression (Closed Form Solution)
       - file: Project 2 Digit Recognition/02 Support Vector Machine
       - file: Project 2 Digit Recognition/03 Softmax and Cross Entrphy Loss
+  - caption: 03 Neural Networks
+    chapters:
+      - file: Unit 3/09 Embeddings
+      - file: Unit 3/10 Neural Network
