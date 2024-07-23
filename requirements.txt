@@ -10,3 +10,11 @@ matplotlib
 gensim
 pandas
 tensorflow
+langchain == 0.1.0
+langchain-cli ==  0.0.19
+langchain-core == 0.1.7
+langsmith == 0.0.77
+openai == 1.6.1
+neo4j == 5.16.0
+langchain_openai == 0.0.2.post1
+langchain-community == 0.0.9
