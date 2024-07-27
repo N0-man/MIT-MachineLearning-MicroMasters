@@ -51,6 +51,7 @@ def replace_attachment_references(cell, nb_name, attachment_folder, image_name):
     if any(attach_str in source_line for source_line in cell['source']):
         # Replace the attachment string in each line of the cell source
         cell['source'] = [source_line.replace(attach_str, f"{attachment_folder_name}/{image_name}") for source_line in cell['source']]
+        cell["attachments"] = {} # Remove the base64 attachment from the cell
 
 def process_attachments(nb, attachment_folder):
     for cell in nb['cells']:
