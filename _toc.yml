@@ -6,45 +6,45 @@ root: README
 parts:
   - caption: 00 Prerequisite Mathematics
     chapters:
-      - file: Unit 0 Prerequisite/Homework 0/01 Summation
-      - file: Unit 0 Prerequisite/Homework 0/02 Product Notation
-      - file: Unit 0 Prerequisite/Homework 0/03 Function Properties
-      - file: Unit 0 Prerequisite/Homework 0/04 Points and Vectors
-      - file: Unit 0 Prerequisite/Homework 0/05 Planes
-      - file: Unit 0 Prerequisite/Homework 0/06 Probability Density Functions
-      - file: Unit 0 Prerequisite/Homework 0/07 Univariate Gaussians
-      - file: Unit 0 Prerequisite/Homework 0/08 Differential Calculus
-      - file: Unit 0 Prerequisite/Homework 0/09 Gradients
-      - file: Unit 0 Prerequisite/Homework 0/10 Matrices
-      - file: Unit 0 Prerequisite/Project 0/Part1
-      - file: Unit 0 Prerequisite/Project 0/Part2
+      - file: Unit00_Prerequisite/01_Summation
+      - file: Unit00_Prerequisite/02_Product_Notation
+      - file: Unit00_Prerequisite/03_Function_Properties
+      - file: Unit00_Prerequisite/04_Points_Vectors
+      - file: Unit00_Prerequisite/05_Planes
+      - file: Unit00_Prerequisite/06_Probability_Density_Functions
+      - file: Unit00_Prerequisite/07_Univariate_Gaussians
+      - file: Unit00_Prerequisite/08_Differential_Calculus
+      - file: Unit00_Prerequisite/09_Gradients
+      - file: Unit00_Prerequisite/10_Matrices
+      - file: Unit00_Prerequisite/Project00/Part1
+      - file: Unit00_Prerequisite/Project00/Part2
   - caption: 00 Self Exploration
     chapters:
-      - file: 00 Self Exploration/Similarity
-      - file: 00 Self Exploration/Concepts
-      - file: 00 Self Exploration/Linear Algebra
+      - file: 00_Self_Exploration/Similarity
+      - file: 00_Self_Exploration/Concepts
+      - file: 00_Self_Exploration/Linear_Algebra
   - caption: 01 Linear Classifiers and Generalizations
     chapters:
-      - file: Unit 1 Linear Classifiers and Generalizations/01 Linear Classifiers
-      - file: Unit 1 Linear Classifiers and Generalizations/02 Perceptron
-      - file: Unit 1 Linear Classifiers and Generalizations/03 Loss Function and Hinge Loss
-      - file: Unit 1 Linear Classifiers and Generalizations/04 Regularization
-      - file: Unit 1 Linear Classifiers and Generalizations/05 Gradient Descent
+      - file: Unit01/01_Linear_Classifiers
+      - file: Unit01/02_Perceptron
+      - file: Unit01/03_Loss_Function_and_Hinge_Loss
+      - file: Unit01/04_Regularization
+      - file: Unit01/05_Gradient_Descent
   - caption: Project 1 Automatic Review Analyzer
     chapters:
-      - file: Project 1 Automatic Review Analyzer/project
+      - file: Project01_Automatic_Review_Analyzer/project
   - caption: 02 Non-linear Classifiers, Linear regression and Collaborative filtering
     chapters:
-      - file: Unit 2/06 Linear Regression
-      - file: Unit 2/07 Nonlinear Classification
-      - file: Unit 2/08 Principal Component Analysis
+      - file: Unit02/06_Linear_Regression
+      - file: Unit02/07_Nonlinear_Classification
+      - file: Unit02/08_Principal_Component_Analysis
   - caption: Project 2 Digit Recognition
     chapters:
-      - file: Project 2 Digit Recognition/00 Digital Recognition MNIST
-      - file: Project 2 Digit Recognition/01 Linear Regression (Closed Form Solution)
-      - file: Project 2 Digit Recognition/02 Support Vector Machine
-      - file: Project 2 Digit Recognition/03 Softmax and Cross Entrphy Loss
+      - file: Project02_Digit_Recognition/00_Digital_Recognition_MNIST
+      - file: Project02_Digit_Recognition/01_Linear_Regression_Closed_Form
+      - file: Project02_Digit_Recognition/02_Support_Vector_Machine
+      - file: Project02_Digit_Recognition/03_Softmax_and_Cross_Entrphy_Loss
   - caption: 03 Neural Networks
     chapters:
-      - file: Unit 3/09 Embeddings
-      - file: Unit 3/10 Neural Network
+      - file: Unit03/09_Embeddings
+      - file: Unit03/10_Neural_Network
