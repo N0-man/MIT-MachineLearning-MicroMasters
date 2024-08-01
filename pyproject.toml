@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "mit-machinelearning-micromasters"
+version = "0.1.0"
+description = ""
+authors = ["n03an <nouman.memon@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.9"
+jupyter-book = "1.0.2"
+matplotlib = "3.9.1"
+numpy = "1.26.4"
+sympy = "1.13.1"
+scipy = "1.13.1"
+scikit-learn = "1.5.1"
+nbconvert = "7.16.4"
+seaborn = "0.13.2"
+gensim = "4.3.3"
+pandas = "2.2.2"
+tensorflow = "2.17.0"
+langchain = "0.1.0"
+langchain-cli = "0.0.19"
+langchain-core = "0.1.7"
+langsmith = "0.0.77"
+openai = "1.6.1"
+neo4j = "5.16.0"
+langchain_openai = "0.0.2.post1"
+langchain-community = "0.0.9"
+optuna = "^3.6.1"
+
+[tool.poetry.group.dev.dependencies]
+notebook = "^7.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

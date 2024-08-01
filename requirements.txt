@@ -10,6 +10,7 @@ matplotlib
 gensim
 pandas
 tensorflow
+optuna == 3.6.1
 langchain == 0.1.0
 langchain-cli ==  0.0.19
 langchain-core == 0.1.7
