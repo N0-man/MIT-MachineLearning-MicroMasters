@@ -23,6 +23,7 @@ parts:
       - file: 00_Self_Exploration/Similarity
       - file: 00_Self_Exploration/Concepts
       - file: 00_Self_Exploration/Linear_Algebra
+      - file: 00_Self_Exploration/asset/Machine_Learning_mindmap
   - caption: 01 Linear Classifiers and Generalizations
     chapters:
       - file: Unit01/01_Linear_Classifiers
@@ -47,4 +48,6 @@ parts:
   - caption: 03 Neural Networks
     chapters:
       - file: Unit03/09_Embeddings
-      - file: Unit03/10_Neural_Network
+      - file: Unit03/Neural_Networks
+      - file: Unit03/10_Feed_Forward_Neural_Network
+      - file: Unit03/Stochastic_Gradient_Descent
