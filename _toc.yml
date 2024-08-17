@@ -31,20 +31,20 @@ parts:
       - file: Unit01/03_Loss_Function_and_Hinge_Loss
       - file: Unit01/04_Regularization
       - file: Unit01/05_Gradient_Descent
-  - caption: Project 1 Automatic Review Analyzer
+  - caption: Project - Automatic Review Analyzer
     chapters:
-      - file: Project01_Automatic_Review_Analyzer/project
+      - file: Project_Automatic_Review_Analyzer/project
   - caption: 02 Non-linear Classifiers, Linear regression and Collaborative filtering
     chapters:
       - file: Unit02/06_Linear_Regression
       - file: Unit02/07_Nonlinear_Classification
       - file: Unit02/08_Principal_Component_Analysis
-  - caption: Project 2 Digit Recognition
+  - caption: Project - Digit Recognition
     chapters:
-      - file: Project02_Digit_Recognition/00_Digital_Recognition_MNIST
-      - file: Project02_Digit_Recognition/01_Linear_Regression_Closed_Form
-      - file: Project02_Digit_Recognition/02_Support_Vector_Machine
-      - file: Project02_Digit_Recognition/03_Softmax_and_Cross_Entrphy_Loss
+      - file: Project_Digit_Recognition/00_Digital_Recognition_MNIST
+      - file: Project_Digit_Recognition/01_Linear_Regression_Closed_Form
+      - file: Project_Digit_Recognition/02_Support_Vector_Machine
+      - file: Project_Digit_Recognition/03_Softmax_and_Cross_Entrphy_Loss
   - caption: 03 Neural Networks
     chapters:
       - file: Unit03/09_Embeddings
