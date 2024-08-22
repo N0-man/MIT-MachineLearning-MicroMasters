@@ -8,8 +8,7 @@
 
 ---
 
-**Note:** As a prerequisite, I had to brush up some basic math important for machine learning. Here are my notes published as JupiterBook 📚 \
-https://N0-man.github.io/math-for-machine-learning/
+**Note:** As a prerequisite, I had to brush up some basic math important for machine learning. Here are my Jupiter notes published as [Digital Book 📚](https://N0-man.github.io/math-for-machine-learning/)
 
 ---
 
@@ -29,5 +28,4 @@ https://N0-man.github.io/math-for-machine-learning/
 
 ### 📚 Jupiter Book Link
 
-All my notes in jupiter notebooks are published as an online book \
-https://N0-man.github.io/MIT-MachineLearning-MicroMasters/
+All my notes in jupiter notebooks are published as a [digital book 📚](https://N0-man.github.io/MIT-MachineLearning-MicroMasters/)
