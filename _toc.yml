@@ -24,6 +24,17 @@ parts:
       - file: 00_Self_Exploration/Concepts
       - file: 00_Self_Exploration/Linear_Algebra
       - file: 00_Self_Exploration/asset/Machine_Learning_mindmap
+  - caption: Scientific Python
+    chapters:
+      - file: python_learning/scientific-python-lectures/Lecture-0-Scientific-Computing-with-Python
+      - file: python_learning/scientific-python-lectures/Lecture-1-Introduction-to-Python-Programming
+      - file: python_learning/scientific-python-lectures/Lecture-2-Numpy
+      - file: python_learning/scientific-python-lectures/Lecture-3-Scipy
+      - file: python_learning/scientific-python-lectures/Lecture-4-Matplotlib
+      - file: python_learning/scientific-python-lectures/Lecture-5-Sympy
+  - caption: CS231N Python
+    chapters:
+      - file: python_learning/standford_cs231n/python_basic
   - caption: 01 Linear Classifiers and Generalizations
     chapters:
       - file: Unit01/01_Linear_Classifiers
