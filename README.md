@@ -29,3 +29,5 @@
 ### 📚 Jupiter Book Link
 
 All my notes in jupiter notebooks are published as a [digital book 📚](https://N0-man.github.io/MIT-MachineLearning-MicroMasters/)
+
+![alt text](image.png)
