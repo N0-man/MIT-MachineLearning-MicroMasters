@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: MIT Micromasters Machine Learning From Linear Models to Deep Learning
-author: n03an
+title: n03@n's Machine Learning notes
+author: n03@n
 logo: logo_n.png
 
 # Force re-execution of notebooks on each build.

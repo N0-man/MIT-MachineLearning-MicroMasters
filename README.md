@@ -1,4 +1,4 @@
-# Learning Notes from MITx 6.86x semister
+# Learning Notes from MITx semister
 
 [Machine Learning with Python: from Linear Models to Deep Learning](https://www.edx.org/learn/machine-learning/massachusetts-institute-of-technology-machine-learning-with-python-from-linear-models-to-deep-learning)
 

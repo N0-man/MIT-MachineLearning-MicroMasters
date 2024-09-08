@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: README
+root: INTRO
 parts:
   - caption: 00 Prerequisite Mathematics
     chapters:
@@ -62,3 +62,6 @@ parts:
       - file: Unit03/Neural_Networks
       - file: Unit03/10_Feed_Forward_Neural_Network
       - file: Unit03/Stochastic_Gradient_Descent
+  - caption: 05 Reinforcement Learning
+    chapters:
+      - file: Unit05/Reinforcement_Learning
