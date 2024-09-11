@@ -31,3 +31,5 @@
 All my notes in jupiter notebooks are published as a [digital book 📚](https://N0-man.github.io/MIT-MachineLearning-MicroMasters/)
 
 ![alt text](image.png)
+
+Final completion certificate is [here](https://courses.edx.org/certificates/27f8bff770cd44b59e1624a0fdf0942d)
