@@ -8,10 +8,11 @@
 
 ---
 
+<span style="background:yellow;color:black">**⭕️ Click ↗ the Hamburger Menu ☰ on top left 👆🏼 to browse topics 💡**
+</span>
+
+---
+
 **Note:** As a prerequisite, I had to brush up some basic math important for machine learning. Here are my Jupiter notes published as [Digital Book 📚](https://N0-man.github.io/math-for-machine-learning/)
 
 ![alt text](image.png)
-
-```{tableofcontents}
-
-```
